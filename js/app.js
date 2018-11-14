@@ -15,7 +15,7 @@ function loadTasks(taskList){
         divTask.className="taskCard";
         divTask.innerHTML = `
             ${task.img?"<img src='" + task.img + "' />":""}
-            <h4> <input type="checkbox" ${task.completed?"checked":""} title="check completed">  ${task.title + ' ' + i}</h4>
+            <h4> <input type="checkbox" ${task.completed?"checked":""} title="check completed" onClick="onCheck(this)">  ${task.title + ' ' + i}</h4>
             <span>created on ${task.createdOn} by ${task.createdBy}</span>
             <p>${task.description}</p>
             <span>Due on ${task.dueDate}</span>            
@@ -44,4 +44,11 @@ loadTasks(taskList);
 function addTask(task){
     taskList.unshift(task);
     loadTasks(taskList);
+}
+function onCheck(element){
+    if(element.checked){
+        element.parentElement.parentElement.classList.add('taskCompleted')
+    }else{
+        element.parentElement.parentElement.classList.remove('taskCompleted')
+    }
 }
