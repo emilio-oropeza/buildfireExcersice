@@ -1,0 +1,4 @@
+- Make 3 groups of task: late task, todo task, complete task
+- Each with a card design 
+- When the user click on the checkbox the task change its color depending of the status and sent to the new groups
+- Change the font 
