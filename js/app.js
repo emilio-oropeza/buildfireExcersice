@@ -1,7 +1,14 @@
 
 function loadTasks(taskList){
     let container = document.getElementById('taskContainer');
+    let lateContainer = document.getElementById('lateTask');
+    let currentContainer = document.getElementById('currentTask');
+    let completeContainer = document.getElementById('completeTask');
+    
     container.innerHTML='';
+    lateContainer.innerHTML='';
+    currentContainer.innerHTML='';
+    completeContainer.innerHTML='';
 
     taskList.forEach((task,i)=>{
         let divTask = document.createElement('div');
@@ -14,14 +21,20 @@ function loadTasks(taskList){
             <span>Due on ${task.dueDate}</span>            
         `;
 
-        if(task.completed)
+        if(task.completed) {
             divTask.classList.add("taskCompleted");
-        else if(task.dueDate < Date.now() )
+            completeContainer.appendChild(divTask);
+        }else if(task.dueDate < Date.now() ){
             divTask.classList.add("taskLate");
-
-
-        container.appendChild(divTask);
+            lateContainer.appendChild(divTask);
+        }else{
+            currentContainer.appendChild(divTask);
+        } 
     });
+
+    container.appendChild(lateContainer);
+    container.appendChild(currentContainer);
+    container.appendChild(completeContainer);
 }
 
 
