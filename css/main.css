@@ -6,12 +6,21 @@ body{
     color: #454545
 }
 
+.taskRows{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 280px);
+    grid-gap: 20px;
+}
+
 .taskCard{
     background-color: white;
-    padding: 10px;
     margin-top: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: gray 2px 2px;
+}
+
+.cardContent{
+    padding: 10px;
 }
 
 .taskLate{
@@ -23,5 +32,6 @@ body{
 }
 
 .taskCard >img{
-    width: 160px;
+    width: 100%;
+    height: auto;
 }

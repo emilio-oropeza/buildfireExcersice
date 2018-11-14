@@ -6,29 +6,31 @@ function loadTasks(taskList){
     let completeContainer = document.getElementById('completeTask');
     
     container.innerHTML='';
-    lateContainer.innerHTML='';
-    currentContainer.innerHTML='';
-    completeContainer.innerHTML='';
+    lateContainer.children[1].innerHTML='';
+    currentContainer.children[1].innerHTML='';
+    completeContainer.children[1].innerHTML='';
 
     taskList.forEach((task,i)=>{
         let divTask = document.createElement('div');
         divTask.className="taskCard";
         divTask.innerHTML = `
             ${task.img?"<img src='" + task.img + "' />":""}
-            <h4> <input type="checkbox" ${task.completed?"checked":""} title="check completed" onClick="onCheck(this)">  ${task.title + ' ' + i}</h4>
-            <span>created on ${task.createdOn} by ${task.createdBy}</span>
-            <p>${task.description}</p>
-            <span>Due on ${task.dueDate}</span>            
+            <div class="cardContent">
+                <h4> <input type="checkbox" ${task.completed?"checked":""} title="check completed" onClick="onCheck(this)">  ${task.title + ' ' + i}</h4>
+                <span>created on ${dateFormat(task.createdOn)} by ${task.createdBy}</span>
+                <p>${task.description}</p>
+                <span>Due on ${dateFormat(task.dueDate)}</span>
+            </div>            
         `;
 
         if(task.completed) {
             divTask.classList.add("taskCompleted");
-            completeContainer.appendChild(divTask);
+            completeContainer.children[1].appendChild(divTask);
         }else if(task.dueDate < Date.now() ){
             divTask.classList.add("taskLate");
-            lateContainer.appendChild(divTask);
+            lateContainer.children[1].appendChild(divTask);
         }else{
-            currentContainer.appendChild(divTask);
+            currentContainer.children[1].appendChild(divTask);
         } 
     });
 
@@ -51,4 +53,13 @@ function onCheck(element){
     }else{
         element.parentElement.parentElement.classList.remove('taskCompleted')
     }
+}
+
+function dateFormat(date){
+    if(undefined === date){
+        date = new Date();    
+    }
+
+    return `${(date.getMonth()+1)}/${date.getDate()}/${date.getFullYear()} at 
+                ${(date.getHours() < 10)?`0${date.getHours()}`:date.getHours()}:${(date.getMinutes() < 10)?`0${date.getMinutes()}`:date.getMinutes()}hrs`;
 }

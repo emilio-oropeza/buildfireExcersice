@@ -11,9 +11,18 @@
     <h1>Task List</h1>
     <button onclick="addTask({title:'My New Task!',description:'This is my new task',img:'https://picsum.photos/1600/900?v99'})">Add Task</button>
     <div id="taskContainer">
-        <div id="lateTask"></div>
-        <div id="currentTask"></div>
-        <div id="completeTask"></div>
+        <div id="lateTask" class="rowsContainers">
+            <h3>Late Task</h3>
+            <div class="taskRows"></div>
+        </div>
+        <div id="currentTask" class="rowsContainers">
+                <h3>Current Task</h3>
+            <div class="taskRows"></div>
+        </div>
+        <div id="completeTask" class="rowsContainers">
+                <h3>Complete Task</h3>
+            <div class="taskRows"></div>
+        </div>
     </div>
     <script src="js/taskList.js"></script>
     <script src="js/app.js"></script>
